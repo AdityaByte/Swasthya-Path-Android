@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SwasthyaPath</string>
+    <string name="app_name">Swasthya Path</string>
+    <string name="author">Aditya Pawar</string>
 </resources>
