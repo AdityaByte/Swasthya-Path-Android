@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomInputField">
+        <attr name="cif_hintText" format="string"/>
+        <attr name="cif_inputType" format="string"/>
+        <attr name="cif_endIconMode" format="string"/>
+        <attr name="cif_endIconDrawable" format="reference"/>
+        <attr name="cif_dropdownItems" format="string" />
+    </declare-styleable>
+</resources>

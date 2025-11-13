@@ -1,0 +1,18 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="@color/glossy_start_light"
+                android:endColor="@color/glossy_end_light"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- Optional glossy overlay -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#33FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

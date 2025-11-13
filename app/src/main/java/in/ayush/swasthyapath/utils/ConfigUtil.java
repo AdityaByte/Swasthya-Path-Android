@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * ConfigUtil: Utility class for loading the config.properties file variables.
+ */
 public class ConfigUtil {
 
     public static String getBackendUrl(Context context) {

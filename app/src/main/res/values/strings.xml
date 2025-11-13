@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Swasthya Path</string>
     <string name="author">Aditya Pawar</string>
+    <string name="login_btn_text">Login</string>
+    <string name="signup_text">Don\'t have any account? Signup</string>
+    <string name="login_screen_head_text">Login to continue your journey</string>
+    <string name="wlcm_bck_txt">Welcome Back</string>
 </resources>

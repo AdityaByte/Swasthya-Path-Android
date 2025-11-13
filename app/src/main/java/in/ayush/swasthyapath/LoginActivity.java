@@ -1,0 +1,95 @@
+package in.ayush.swasthyapath;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.button.MaterialButton;
+import in.ayush.swasthyapath.component.CustomInputField;
+import in.ayush.swasthyapath.network.ApiClient;
+import in.ayush.swasthyapath.network.ApiService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class LoginActivity extends AppCompatActivity {
+
+    private CustomInputField dropdownInput, emailInput, passInput;
+    private MaterialButton loginBtn;
+    private TextView redirectSignupBtn;
+    private ApiService apiService;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        // Initializing the variables.
+        dropdownInput = findViewById(R.id.drop_down_input);
+        emailInput = findViewById(R.id.email_input);
+        passInput = findViewById(R.id.pass_input);
+        loginBtn = findViewById(R.id.login_btn);
+        redirectSignupBtn = findViewById(R.id.redirect_signup_txt);
+
+        apiService = ApiClient.getApiService(this);
+
+        // Initializing shared preferences.
+        sharedPreferences = getSharedPreferences("swasthya_path_db", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        // Here we have to do some things.
+        loginBtn.setOnClickListener(view -> {
+
+            // Texts
+            String dropdownText = dropdownInput.getText().toString().trim();
+            String emailText = emailInput.getText().toString().trim();
+            String passText = passInput.getText().toString().trim();
+
+            if ( dropdownText.isEmpty() || emailText.isEmpty() || passText.isEmpty() ) {
+                Toast.makeText(this, "Field's cannot be empty!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // checking for dropdown selection.
+            if (dropdownInput.getEditText().getTag() == null) {
+                Toast.makeText(this, "Please select a valid role!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Now we need to do something like performing the http request to the backend.
+            Map<String, String> params = new HashMap<>();
+            params.put("userType", dropdownText);
+            params.put("email", emailText);
+            params.put("password", passText);
+            apiService.login(params).enqueue(new Callback<Map<String, String>>() {
+                @Override
+                public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
+                    if (response.isSuccessful()) {
+                        // Here we need to make this.
+                        Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        // Once the login is done we have to save the access_token and refresh_token locally.
+                        editor.putString("access_token", response.body().get("accessToken"));
+                        editor.putString("refresh_token", response.body().get("refreshToken"));
+                    } else {
+                        Toast.makeText(LoginActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Map<String, String>> call, Throwable throwable) {
+                    Toast.makeText(LoginActivity.this, throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        });
+    }
+}
