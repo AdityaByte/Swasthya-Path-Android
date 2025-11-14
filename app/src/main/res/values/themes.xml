@@ -1,12 +1,31 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Main App Theme -->
     <style name="Theme.SwasthyaPath" parent="Theme.Material3.DayNight.NoActionBar">
+
         <!-- Core colors -->
         <item name="colorPrimary">@color/deep_green</item>
         <item name="colorOnPrimary">@color/white</item>
 
         <item name="colorSecondary">@color/light_green</item>
         <item name="colorOnSecondary">@color/dark_green</item>
+
+        <!-- Global Font Family -->
+        <item name="fontFamily">@font/poppins_regular</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+
+        <!-- Apply global text size -->
+        <item name="textAppearanceBodyLarge">@style/App.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/App.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/App.BodySmall</item>
+
+        <item name="textAppearanceTitleLarge">@style/App.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/App.TitleMedium</item>
+        <item name="textAppearanceTitleSmall">@style/App.TitleSmall</item>
+
+        <item name="textAppearanceLabelLarge">@style/App.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/App.LabelMedium</item>
+        <item name="textAppearanceLabelSmall">@style/App.LabelSmall</item>
 
         <!-- Text colors -->
         <item name="android:textColorPrimary">@color/black</item>
@@ -15,8 +34,66 @@
         <!-- Buttons -->
         <item name="materialButtonStyle">@style/Widget.GreenButton</item>
 
+        <!-- Window BG -->
         <item name="android:windowBackground">@drawable/glossy_bg</item>
+
     </style>
+
+
+    <!-- ===========================
+         GLOBAL TEXT SIZE STYLES
+       =========================== -->
+
+    <!-- Body text -->
+    <style name="App.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <!-- Titles -->
+    <style name="App.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+
+    <!-- Labels -->
+    <style name="App.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="App.LabelSmall" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">10sp</item>
+        <item name="fontFamily">@font/poppins_regular</item>
+    </style>
+
 
     <!-- Button style -->
     <style name="Widget.GreenButton" parent="Widget.Material3.Button">
@@ -24,11 +101,19 @@
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="cornerRadius">12dp</item>
         <item name="elevation">4dp</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
 
+
+    <!-- No Action Bar Variant -->
     <style name="Theme.SwasthyaPath.NoActionBar" parent="Theme.SwasthyaPath">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Toolbar.Title.Small" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
 </resources>

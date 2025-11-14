@@ -31,6 +31,10 @@
             android:exported="true"
             android:theme="@style/Theme.SwasthyaPath.NoActionBar"/>
 
+        <activity android:name=".PatientActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SwasthyaPath.NoActionBar"/>
+
     </application>
     
     <uses-permission android:name="android.permission.INTERNET" />

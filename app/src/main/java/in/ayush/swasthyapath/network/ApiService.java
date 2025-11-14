@@ -1,8 +1,11 @@
 package in.ayush.swasthyapath.network;
 
+import in.ayush.swasthyapath.model.DietResponse;
+import in.ayush.swasthyapath.model.PatientDietResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 import java.util.Map;
@@ -17,4 +20,9 @@ public interface ApiService {
 
     @POST("/api/auth/login")
     Call<Map<String, String>> login(@Body Map<String, String> request);
+
+    @POST("/api/patient/diet")
+    Call<PatientDietResponse> generateDietPlan(
+            @Header("Authorization") String accessToken
+    );
 }

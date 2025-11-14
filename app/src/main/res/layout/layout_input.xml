@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.textfield.TextInputLayout
+<com.google.android.material.textfield.TextInputLayout xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/text_input_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
+        android:textSize="15sp"
         android:inputType="text"
-        android:focusableInTouchMode="true" />
+        android:focusableInTouchMode="true"
+        android:fontFamily="@font/poppins"
+        tools:ignore="SmallSp" />
 
 </com.google.android.material.textfield.TextInputLayout>

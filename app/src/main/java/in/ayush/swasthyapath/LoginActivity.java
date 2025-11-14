@@ -74,12 +74,17 @@ public class LoginActivity extends AppCompatActivity {
             apiService.login(params).enqueue(new Callback<Map<String, String>>() {
                 @Override
                 public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
-                    if (response.isSuccessful()) {
+                    if (response.isSuccessful() && response.body() != null) {
                         // Here we need to make this.
                         Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         // Once the login is done we have to save the access_token and refresh_token locally.
                         editor.putString("access_token", response.body().get("accessToken"));
                         editor.putString("refresh_token", response.body().get("refreshToken"));
+                        editor.putString("role", dropdownText);
+                        editor.commit(); // this is crucial.
+
+                        // Here we have to navigate it to the respective role activity.
+                        navigateToRoleActivity(dropdownText);
                     } else {
                         Toast.makeText(LoginActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
                     }
@@ -91,5 +96,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
+    }
+
+    private void navigateToRoleActivity(String role) {
+        Intent intent;
+        switch (role) {
+            case "PATIENT":
+                intent = new Intent(LoginActivity.this, PatientActivity.class);
+                break;
+            default:
+                Toast.makeText(this, "Unknown role!", Toast.LENGTH_SHORT).show();
+                return;
+        }
+        startActivity(intent);
+        finish();
     }
 }

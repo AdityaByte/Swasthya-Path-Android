@@ -1,0 +1,17 @@
+package in.ayush.swasthyapath.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
+
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class DietResponse {
+    private List<Meal> dayPlan;
+    private List<String> guidelines;
+}
