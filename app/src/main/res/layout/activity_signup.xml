@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/glossy_bg"
+    android:padding="24dp"
+    tools:context="SignupActivity">
+
+    <TextView
+        android:id="@+id/titleSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Profile"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="27sp"
+        android:fontFamily="@font/poppins"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitleSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start your wellness journey"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:alpha="0.85"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/titleSignup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/containerCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/subtitleSignup"
+        app:layout_constraintBottom_toTopOf="@id/redirect_login_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp"
+        android:layout_marginBottom="10dp"
+        android:backgroundTint="@color/white"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="1dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22dp">
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Full Name"
+                    app:cif_inputType="textPersonName"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/account" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/email_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Email"
+                    app:cif_inputType="textEmailAddress"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/email" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Phone Number"
+                    app:cif_inputType="phone"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/phone" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/dob_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Date of Birth"
+                    app:cif_inputType="date"
+                    android:focusable="false"
+                    android:clickable="true"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/calendar" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/gender_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Gender"
+                    app:cif_inputType="dropdown"
+                    app:cif_dropdownItems="MALE,FEMALE,OTHER"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/gender" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/weight_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Weight (kg)"
+                    app:cif_inputType="numberDecimal"
+                    android:layout_marginBottom="18dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/weight" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/height_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Height (cm)"
+                    app:cif_inputType="numberDecimal"
+                    android:layout_marginBottom="24dp"
+                    app:cif_endIconMode="custom"
+                    app:cif_endIconDrawable="@drawable/height" />
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/password_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Password"
+                    app:cif_inputType="textPassword"
+                    android:layout_marginBottom="24dp"
+                    app:cif_endIconMode="password_toggle" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/signup_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/signup_btn"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="16sp"
+                    android:paddingVertical="14dp"
+                    android:textAllCaps="false"
+                    app:backgroundTint="?attr/colorPrimary"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Redirect Login -->
+    <TextView
+        android:id="@+id/redirect_login_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Already have an account? Login here"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins"
+        android:textColor="?android:attr/textColorPrimary"
+        android:alpha="0.9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,7 @@
 package in.ayush.swasthyapath.network;
 
+import in.ayush.swasthyapath.dto.OtpDTO;
+import in.ayush.swasthyapath.dto.SignupDTO;
 import in.ayush.swasthyapath.model.DietResponse;
 import in.ayush.swasthyapath.model.PatientDietResponse;
 import retrofit2.Call;
@@ -25,4 +27,13 @@ public interface ApiService {
     Call<PatientDietResponse> generateDietPlan(
             @Header("Authorization") String accessToken
     );
+
+    @POST("/api/auth/signup/patient")
+    Call<Map<String, String>> signup(@Body SignupDTO signupDTO);
+
+    @POST("/api/auth/signup/patient/otp")
+    Call<Map<String, String>> otpValidation(@Body OtpDTO otpDTO);
+
+
+
 }

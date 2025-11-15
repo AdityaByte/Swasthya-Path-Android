@@ -8,5 +8,6 @@
     <string name="nav_home">Home</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_logout">Logout</string>
+    <string name="signup_btn">Create Account</string>
     <string name="no_diet_plan_txt">No diet plan found for today. Please check your network or try again.</string>
 </resources>

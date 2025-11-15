@@ -47,6 +47,10 @@ public class LoginActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("swasthya_path_db", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        redirectSignupBtn.setOnClickListener(view -> {
+            startActivity(new Intent(this, SignupActivity.class));
+        });
+
         // Here we have to do some things.
         loginBtn.setOnClickListener(view -> {
 
