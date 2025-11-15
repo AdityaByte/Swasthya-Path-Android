@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PatientDietResponse {
+    private Patient patient;
     private DietResponse healthResponse;
 }

@@ -6,7 +6,7 @@
     <string name="login_screen_head_text">Login to continue your journey</string>
     <string name="wlcm_bck_txt">Welcome Back</string>
     <string name="nav_home">Home</string>
-    <string name="nav_report">Report</string>
-    <string name="nav_feedback">Feedback</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_logout">Logout</string>
     <string name="no_diet_plan_txt">No diet plan found for today. Please check your network or try again.</string>
 </resources>

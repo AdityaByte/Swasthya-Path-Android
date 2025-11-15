@@ -86,7 +86,11 @@ public class LoginActivity extends AppCompatActivity {
                         // Here we have to navigate it to the respective role activity.
                         navigateToRoleActivity(dropdownText);
                     } else {
-                        Toast.makeText(LoginActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
+                        if (response.body() != null && response.body().containsKey("response")) {
+                            Toast.makeText(LoginActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "Login failed: HTTP " + response.code(), Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
 

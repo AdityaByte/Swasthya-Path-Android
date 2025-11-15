@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
+
+    private boolean isNavigationHandled = false;
+
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,8 @@ public class SplashActivity extends AppCompatActivity {
                 // startActivity(new Intent(this, PatientActivity.class));
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
+
+                isNavigationHandled = true;
                 return;
             }
 
@@ -51,20 +57,30 @@ public class SplashActivity extends AppCompatActivity {
                         Toast.makeText(SplashActivity.this, respText, Toast.LENGTH_SHORT).show();
                         navigateToRoleActivity(role);
                     } else {
-                        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                        Log.e("SPLASH", "Token validation failed with code: " + response.code());
+                        handleFailedTokenValidation();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Map<String, String>> call, Throwable throwable) {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                    finish();
+                    Log.e("SPLASH", "Network/Request Failure: " + throwable.getMessage());
+                    handleFailedTokenValidation();
                 }
             });
 
         }, 2000);
+    }
+
+    private void handleFailedTokenValidation() {
+        if (!isNavigationHandled) {
+            isNavigationHandled = true;
+            Toast.makeText(this, "Session expired. Please log in again.", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void navigateToRoleActivity(String role) {

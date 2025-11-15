@@ -7,16 +7,23 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
+            android:icon="@drawable/home"
             android:title="@string/nav_home"/>
 
         <item
-            android:id="@+id/nav_report"
-            android:title="@string/nav_report"/>
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/account"
+            android:title="@string/nav_profile"/>
+    </group>
 
+    <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_feedback"
-            android:title="@string/nav_feedback"/>
-
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="@string/nav_logout"
+            android:titleCondensed="Logout"
+            android:iconTint="@color/red"
+            android:titleTextColor="@color/red"/>
     </group>
 
 </menu>

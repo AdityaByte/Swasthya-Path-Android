@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/glossy_bg">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/headerCard"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="10dp"
+        android:backgroundTint="@color/white"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="18dp">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/account"
+                android:layout_gravity="center"
+                app:tint="?attr/colorPrimary" />
+
+            <TextView
+                android:id="@+id/profileTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Patient Profile"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:fontFamily="@font/poppins"
+                android:layout_marginTop="6dp"/>
+
+            <TextView
+                android:id="@+id/profileSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your health details"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:alpha="0.8"
+                android:fontFamily="@font/poppins"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Scrollable Content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/headerCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <!-- Your Profile Details Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="22dp"
+                app:cardElevation="10dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="@color/white"
+                app:strokeColor="?attr/colorPrimary"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="22dp">
+
+                    <!-- Name -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Name"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Email -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Phone -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Phone Number"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- DOB -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtDob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Gender -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gender"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Height / Weight -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Physical Stats"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtHeightWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Prakruti -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Prakruti (Body Constitution)"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtPrakruti"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Vikruti -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vikruti (Current Condition)"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtVikruti"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Consultation -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Consultation Status"
+                        android:fontFamily="@font/poppins"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="14sp"
+                        android:alpha="0.7"/>
+
+                    <TextView
+                        android:id="@+id/txtConsultationStatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:fontFamily="@font/poppins"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package in.ayush.swasthyapath.ui.patient;
+package in.ayush.swasthyapath.ui.patient.home;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

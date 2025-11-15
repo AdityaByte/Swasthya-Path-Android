@@ -5,6 +5,7 @@
     <color name="dark_green">#0D3B12</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="red">#F44336</color>
 
     <!-- Glossy gradient (light) -->
     <color name="glossy_start_light">#C8E6C9</color>
