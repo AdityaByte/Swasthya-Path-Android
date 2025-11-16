@@ -29,11 +29,11 @@
 
         <activity android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.SwasthyaPath.NoActionBar"/>
+            android:theme="@style/Theme.SwasthyaPath.NoActionBar" />
 
         <activity android:name=".PatientActivity"
             android:exported="true"
-            android:theme="@style/Theme.SwasthyaPath.NoActionBar"/>
+            android:theme="@style/Theme.SwasthyaPath.NoActionBar" />
 
         <activity android:name=".SignupActivity"
             android:exported="true"

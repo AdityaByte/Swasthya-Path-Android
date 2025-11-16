@@ -7,9 +7,11 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
 import in.ayush.swasthyapath.network.ApiClient;
 import in.ayush.swasthyapath.network.ApiService;
 import retrofit2.Call;
@@ -21,35 +23,59 @@ import java.util.Map;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private boolean isNavigationHandled = false;
+    private ApiService apiService;
+    private Handler handler;
+    private Runnable navigationRunnable;
+    private Call<Map<String, String>> validationCall;
 
     @Override
-    protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_splash);
 
-        ApiService apiService = ApiClient.getApiService(this);
+        apiService = ApiClient.getApiService(this);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            SharedPreferences sharedPreferences = getSharedPreferences("swasthya_path_db", MODE_PRIVATE);
-            String accessToken = sharedPreferences.getString("access_token", null);
-            String role = sharedPreferences.getString("role", null);
-
-            if (accessToken == null) {
-                // startActivity(new Intent(this, PatientActivity.class));
-                startActivity(new Intent(this, LoginActivity.class));
-                finish();
-
-                isNavigationHandled = true;
-                return;
+        handler = new Handler(Looper.getMainLooper());
+        navigationRunnable = new Runnable() {
+            @Override
+            public void run() {
+                handleNavigation();
             }
+        };
 
-            // Else if there is a token we have to validate the token at the server.
+        // Start navigation after a delay of 2s.
+        handler.postDelayed(navigationRunnable, 2000);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Remove any pending callbacks to prevent memory leaks
+        if (handler != null && navigationRunnable != null) {
+            handler.removeCallbacks(navigationRunnable);
+        }
+        // Cancel ongoing network calls
+        if (validationCall != null) {
+            validationCall.cancel();
+        }
+    }
+
+    private void handleNavigation() {
+        SharedPreferences sp = getSharedPreferences("swasthya_path_db", MODE_PRIVATE);
+        String accessToken = sp.getString("access_token", null);
+        String role = sp.getString("role", null);
+
+        if (accessToken == null) {
+            navigateToLogin();
+        } else {
+            // Validate token with server
             Map<String, String> params = new HashMap<>();
             params.put("access_token", accessToken);
 
-            apiService.tokenValidationRequest(params).enqueue(new Callback<Map<String, String>>() {
+            validationCall = apiService.tokenValidationRequest(params);
+            validationCall.enqueue(new Callback<Map<String, String>>() {
                 @Override
                 public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                     if (response.isSuccessful() && response.body() != null) {
@@ -58,29 +84,26 @@ public class SplashActivity extends AppCompatActivity {
                         navigateToRoleActivity(role);
                     } else {
                         Log.e("SPLASH", "Token validation failed with code: " + response.code());
-                        handleFailedTokenValidation();
+                        navigateToLogin();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Map<String, String>> call, Throwable throwable) {
-                    Log.e("SPLASH", "Network/Request Failure: " + throwable.getMessage());
-                    handleFailedTokenValidation();
+                public void onFailure(Call<Map<String, String>> call, Throwable t) {
+                    if (!call.isCanceled()) {
+                        Log.e("SPLASH", "Network/Request Failure: " + t.getMessage());
+                        navigateToLogin();
+                    }
                 }
             });
-
-        }, 2000);
+        }
     }
 
-    private void handleFailedTokenValidation() {
-        if (!isNavigationHandled) {
-            isNavigationHandled = true;
-            Toast.makeText(this, "Session expired. Please log in again.", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
-        }
+    private void navigateToLogin() {
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
     }
 
     private void navigateToRoleActivity(String role) {
@@ -96,6 +119,7 @@ public class SplashActivity extends AppCompatActivity {
                 Toast.makeText(this, "Unknown role!", Toast.LENGTH_SHORT).show();
                 return;
         }
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
     }
