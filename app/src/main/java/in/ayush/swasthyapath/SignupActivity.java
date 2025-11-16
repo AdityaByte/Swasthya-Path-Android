@@ -18,7 +18,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -94,7 +99,13 @@ public class SignupActivity extends AppCompatActivity {
                 return;
             } else if (passwordTxt.length() < 6) {
                 Toast.makeText(this, "Password length should be greater than 6 characters", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Formatting the date.
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dobTxt, dateTimeFormatter);
+            Date dob = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
             // If all the fields are valid we have to make a dto and send the data to the backend.
             SignupDTO signupDTO = SignupDTO
@@ -102,7 +113,7 @@ public class SignupActivity extends AppCompatActivity {
                     .name(nameTxt)
                     .email(emailTxt)
                     .gender(genderTxt)
-                    .dob(dobTxt)
+                    .dob(dob)
                     .height(heightTxt)
                     .weight(weightTxt)
                     .password(passwordTxt)

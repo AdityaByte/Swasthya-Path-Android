@@ -1,5 +1,6 @@
 package in.ayush.swasthyapath.network;
 
+import in.ayush.swasthyapath.dto.AssessmentDTO;
 import in.ayush.swasthyapath.dto.OtpDTO;
 import in.ayush.swasthyapath.dto.SignupDTO;
 import in.ayush.swasthyapath.model.DietResponse;
@@ -34,6 +35,9 @@ public interface ApiService {
     @POST("/api/auth/signup/patient/otp")
     Call<Map<String, String>> otpValidation(@Body OtpDTO otpDTO);
 
-
-
+    @POST("/api/patient/assessment")
+    Call<Map<String, String>> assessment(
+            @Header("Authorization") String accessToken,
+            @Body AssessmentDTO assessmentDTO
+    );
 }

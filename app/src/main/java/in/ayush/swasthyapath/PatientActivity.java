@@ -36,7 +36,7 @@ public class PatientActivity extends AppCompatActivity {
     private ApiService apiService;
     private HomeViewModel homeViewModel;
     private ProfileViewModel profileViewModel;
-    private TextView headerUsername, headerEmail;
+    private TextView headerUsername;
 
     @SuppressLint("CutPasteId")
     @Override
@@ -49,7 +49,6 @@ public class PatientActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         View headerView = navigationView.getHeaderView(0);
         headerUsername = headerView.findViewById(R.id.header_username);
-        headerEmail = headerView.findViewById(R.id.header_email);
 
         // shared Home View Model.
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -71,7 +70,6 @@ public class PatientActivity extends AppCompatActivity {
                     PatientDietResponse patientDietResponse = response.body();
                     homeViewModel.setMeals(patientDietResponse.getHealthResponse().getDayPlan());
                     headerUsername.setText(patientDietResponse.getPatient().getName());
-                    headerEmail.setText(patientDietResponse.getPatient().getEmail());
                     profileViewModel.setPatientData(patientDietResponse.getPatient());
                 } else {
                     homeViewModel.setNetworkError();

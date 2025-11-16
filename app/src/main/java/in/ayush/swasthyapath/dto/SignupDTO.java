@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -13,7 +15,7 @@ public class SignupDTO {
     private String name;
     private String email;
     private String phoneNumber;
-    private String dob;
+    private Date dob;
     private String gender;
     private Double height;
     private Double weight;

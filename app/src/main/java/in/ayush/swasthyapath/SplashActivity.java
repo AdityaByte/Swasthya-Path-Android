@@ -89,6 +89,9 @@ public class SplashActivity extends AppCompatActivity {
             case "PATIENT":
                 intent = new Intent(SplashActivity.this, PatientActivity.class);
                 break;
+            case "ASSESSMENT":
+                intent = new Intent(SplashActivity.this, AssessmentActivity.class);
+                break;
             default:
                 Toast.makeText(this, "Unknown role!", Toast.LENGTH_SHORT).show();
                 return;

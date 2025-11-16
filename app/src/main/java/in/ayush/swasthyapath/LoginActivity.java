@@ -87,8 +87,21 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putString("role", dropdownText);
                         editor.commit(); // this is crucial.
 
-                        // Here we have to navigate it to the respective role activity.
-                        navigateToRoleActivity(dropdownText);
+                        // Here we have to check one thing ok.
+                        if (dropdownText.equals("PATIENT")) {
+                            boolean assessmentDone = Boolean.parseBoolean(response.body().get("assessment"));
+                            // I have to put the assessment to the sharedPreferences.
+                            editor.putBoolean("assessment", assessmentDone);
+                            if (assessmentDone) {
+                                navigateToRoleActivity(dropdownText);
+                            } else {
+                                // Here we have to forward that to the other page.
+                                navigateToRoleActivity("ASSESSMENT");
+                            }
+                        } else {
+                            navigateToRoleActivity(dropdownText);
+                        }
+
                     } else {
                         if (response.body() != null && response.body().containsKey("response")) {
                             Toast.makeText(LoginActivity.this, response.body().get("response"), Toast.LENGTH_SHORT).show();
@@ -111,6 +124,9 @@ public class LoginActivity extends AppCompatActivity {
         switch (role) {
             case "PATIENT":
                 intent = new Intent(LoginActivity.this, PatientActivity.class);
+                break;
+            case "ASSESSMENT":
+                intent = new Intent(LoginActivity.this, AssessmentActivity.class);
                 break;
             default:
                 Toast.makeText(this, "Unknown role!", Toast.LENGTH_SHORT).show();

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="@drawable/glossy_bg">
+
+    <TextView
+        android:id="@+id/titleBasic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Basic Assessment"
+        android:textSize="27sp"
+        android:textColor="?attr/colorPrimary"
+        android:fontFamily="@font/poppins"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/subtitleBasic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tell us about your daily lifestyle"
+        android:textSize="15sp"
+        android:alpha="0.85"
+        android:textColor="?attr/colorPrimaryVariant"
+        android:fontFamily="@font/poppins"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/titleBasic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/basicContainerCard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="22dp"
+        app:cardElevation="10dp"
+        android:backgroundTint="@color/white"
+        app:strokeColor="?attr/colorPrimary"
+        app:strokeWidth="1dp"
+        app:layout_constraintTop_toBottomOf="@id/subtitleBasic"
+        app:layout_constraintBottom_toTopOf="@id/nextBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="22dp"
+                android:orientation="vertical">
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/activity_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Activity Level"
+                    app:cif_inputType="dropdown"
+                    app:cif_dropdownItems="SEDENTARY,MODERATE,ACTIVE"
+                    android:layout_marginBottom="18dp"/>
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/water_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Daily Water Intake (litres)"
+                    app:cif_inputType="numberDecimal"
+                    android:layout_marginBottom="18dp"/>
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/meal_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Meal Frequency (per day)"
+                    app:cif_inputType="number"
+                    android:layout_marginBottom="18dp"/>
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/sleep_schedule_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Sleeping Schedule"
+                    app:cif_inputType="dropdown"
+                    app:cif_dropdownItems="EARLY,LATE"
+                    android:layout_marginBottom="18dp"/>
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/sleep_hours_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Hours of Sleep"
+                    app:cif_inputType="numberDecimal"
+                    android:layout_marginBottom="18dp"/>
+
+                <in.ayush.swasthyapath.component.CustomInputField
+                    android:id="@+id/food_genre_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cif_hintText="Preferred Food Genre"
+                    app:cif_inputType="dropdown"
+                    app:cif_dropdownItems="VEG,NON_VEG,VEGAN,MIXED"
+                    android:layout_marginBottom="24dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nextBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:paddingVertical="14dp"
+        android:text="Next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        app:backgroundTint="?attr/colorPrimary"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
